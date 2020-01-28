@@ -518,7 +518,7 @@ fn inner_parse<'s, P>(parser: &mut fmt_macros::Parser<'s>, target: &mut P)
                 // previously-implicit values.
                 if fmt.is_none() && (arg.format != DEFAULT_KEY || argument_pos != fmt_len) {
                     fmt = Some((0..fmt_len).map(|i| v1::Argument {
-                        position: v1::Position::At(i),
+                        position: i,
                         format: DEFAULT_VALUE,
                     }).collect::<Vec<_>>());
                 }
@@ -540,7 +540,7 @@ fn inner_parse<'s, P>(parser: &mut fmt_macros::Parser<'s>, target: &mut P)
 
                     // push the format spec and argument value
                     fmt.push(v1::Argument {
-                        position: v1::Position::At(argument_pos),
+                        position: argument_pos,
                         format: spec,
                     })
                 }
